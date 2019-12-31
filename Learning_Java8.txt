@@ -1,0 +1,54 @@
+1、Lambda表达式语法
+2、在哪里如何使用Lambda
+3、Execute around pattern
+4、Functional interface 函数式编程
+5、Method reference 方法引用
+6、Type inference 类型推导
+7、Composing lambdas 组合lambda表达式
+
+A lambda expression can be understood as a concise representation of an anonymous function
+that can be passed around: it doesn’t have a name, but it has a list of parameters, a body, a
+return type, and also possibly a list of exceptions that can be thrown. That’s one big definition;
+let’s break it down:
+    1、Anonymous— We say anonymous because it doesn’t have an explicit name like a method would normally have:
+less to write and think about!
+    2、Function— We say function because a lambda isn’t associated with a particular class like a method is.
+But like a method, a lambda has a list of parameters, a body, a return type, and a possible list of
+exceptions that can be thrown.
+    3、Passed around— A lambda expression can be passed as argument to a method or stored in a variable.
+    4、Concise— You don’t need to write a lot of boilerplate like you do for anonymous classes.
+
+
+parameter list         arrow             lambda body
+   (o1, o2)              ->      o1.getColor().compareTo(o2.getColor());
+
+Valid lambda:
+(String s) -> s.length();
+
+(Apple a) -> a.getColor.equals("green");
+
+(int x, int y) -> {
+    System.out.println(x);
+    System.out.println(y);
+}; ==> 相当于下边的接口
+
+@FunctionalInterfaces
+public interface Test {
+    public void fun(int x, int y);
+}
+
+() -> 42; ==> 相当于下边的接口
+
+@FunctionalInterfaces
+public interface Test {
+    public int fun();
+}
+
+expression:
+(parameters) -> expression
+(parameters) -> {expression;}
+() -> {}
+() -> "hello"
+() -> {return "hello";}
+(Integer i) -> {return "Alex" + i;}
+(String s) -> {return "Hello Alex";}

@@ -1,7 +1,7 @@
 package com.lilei.java8;
 
 /**
- * @description:
+ * @description: Apple对象
  * @author: Mr.Li
  * @date: Created in 2019/12/30 14:18
  * @version: 1.0

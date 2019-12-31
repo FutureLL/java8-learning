@@ -13,9 +13,7 @@ import java.util.List;
  */
 public class FilterApple {
 
-    /**
-     * 策略模式的方式
-     */
+    /* 标记在接口上,"函数式接口"是指仅仅只包含一个抽象方法的接口 */
     @FunctionalInterface
     public interface AppleFilter {
         boolean filter(Apple apple);
