@@ -1,10 +1,8 @@
 package com.lilei.java8;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -126,7 +124,7 @@ public class MethodReference {
          * 3、Method Reference
          * list.sort(Comparator.comparing(Apple::getColor));
          *
-         * 分析3:
+         * 分析方法3:
          * public static <T, U extends Comparable<? super U>> Comparator<T> comparing(
          *         Function<? super T, ? extends U> keyExtractor) {
          *     Objects.requireNonNull(keyExtractor);

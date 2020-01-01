@@ -1,7 +1,7 @@
 package com.lilei.java8;
 
 /**
- * @description:
+ * @description: 模拟更多的BiFunction
  * @author: Mr.Li
  * @date: Created in 2020/1/1 13:38
  * @version: 1.0
