@@ -39,7 +39,12 @@ public class Dish {
 
     @Override
     public String toString() {
-        return name;
+        return "Dish{" +
+                "name='" + name + '\'' +
+                ", vegetartion=" + vegetartion +
+                ", calories=" + calories +
+                ", type=" + type +
+                '}';
     }
 
     public enum Type {

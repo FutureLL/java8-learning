@@ -2,6 +2,7 @@ package com.lilei.java8;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -33,6 +34,29 @@ public class SimpleStream {
 
         List<String> dishNameByStream = getDishNameByStream(menu);
         System.out.println(dishNameByStream);
+
+        Stream<Dish> stream = menu.stream();
+        stream.forEach(System.out::println);
+        System.out.println();
+        // Note that, similarly to iterators, a stream can be traversed only once.
+        // 异常 IllegalStateException: stream has already been operated upon or closed
+        // stream.forEach(System.out::println);
+
+        /**
+         * Intermediate operations:
+         *
+         * You can see two groups of operations:
+         *      1、filter, map, and limit can be connected together to form a pipeline.
+         *      2、collect causes the pipeline to be executed and closes it.
+         */
+        List<String> result = menu.stream().filter(dish -> {
+            System.out.println("filter -> " + dish.getName());
+            return dish.getCalories() > 300;
+        }).map(dish -> {
+            System.out.println("map -> " + dish.getName());
+            return dish.getName();
+        }).limit(3).collect(toList());
+        System.out.println(result);
     }
 
     private static List<String> getDishNameByStream(List<Dish> menu) {
@@ -43,7 +67,7 @@ public class SimpleStream {
                 // filter(): Returns a stream consisting of the elements of this stream that match the given predicate.
                 .filter(dish -> {
                     try {
-                        TimeUnit.SECONDS.sleep(100);
+                        TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -53,6 +77,8 @@ public class SimpleStream {
                 .sorted(Comparator.comparing(Dish::getCalories))
                 // map(): Returns a stream consisting of the results of applying the given function to the elements of this stream.
                 .map(Dish::getName)
+                // limit(): Returns a stream consisting of the elements of this stream, truncated to be no longer than maxSize in length.
+                .limit(2)
                 // collect(): Performs a mutable reduction operation on the elements of this stream using a Collector.
                 // toList(): Returns a Collector that accumulates the input elements into a new List.
                 .collect(toList());
@@ -69,7 +95,7 @@ public class SimpleStream {
         }
 
         try {
-            TimeUnit.SECONDS.sleep(100);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
