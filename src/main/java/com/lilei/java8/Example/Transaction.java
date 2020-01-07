@@ -1,7 +1,7 @@
 package com.lilei.java8.Example;
 
 /**
- * @description:
+ * @description: Transaction Class
  * @author: Mr.Li
  * @date: Created in 2020/1/7 13:42
  * @version: 1.0
