@@ -1,5 +1,7 @@
 package com.lilei.java8.OptionalExplain;
 
+import java.util.Optional;
+
 /**
  * @description: Person Class
  * @author: Mr.Li
@@ -9,9 +11,9 @@ package com.lilei.java8.OptionalExplain;
  */
 public class Person {
 
-    private Car car;
+    private Optional<Car> car;
 
-    public Car getCar() {
+    public Optional<Car> getCar() {
         return this.car;
     }
 }

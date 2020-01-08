@@ -20,6 +20,7 @@ public class OptionalUsage {
 
         // of(T value): Returns an Optional with the specified present non-null value.
         // 相当于对Insurance进行了封装
+        // 如果把null值作为参数传递进去,of()方法会抛出NullPointerException
         Optional<Insurance> insuranceOptional1 = Optional.of(new Insurance());
         insuranceOptional1.get();
 
@@ -30,6 +31,8 @@ public class OptionalUsage {
          * public static <T> Optional<T> ofNullable(T value) {
          *     return value == null ? empty() : of(value);
          * }
+         *
+         * 如果对象即可能是null也可能是非null,你就应该使用ofNullable()方法
          */
         Optional<Insurance> insuranceOptional2 = Optional.ofNullable(new Insurance());
         insuranceOptional2.get();
@@ -84,7 +87,7 @@ public class OptionalUsage {
          * }
          */
         Insurance insurance2 = insuranceOptional1.filter(i -> i.getName() == null).get();
-        System.out.println(insurance2);
+        System.out.println("insurance2: " + insurance2.getName());
 
         /**
          * map(Function<? super T,? extends U> mapper)
