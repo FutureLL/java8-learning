@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class CollectorsAction {
 
-    private final static List<Dish> menu = Arrays.asList(
+    public final static List<Dish> menu = Arrays.asList(
             new Dish("pork", false, 800, Dish.Type.MEAT),
             new Dish("beef", false, 700, Dish.Type.MEAT),
             new Dish("chicken", false, 400, Dish.Type.MEAT),
@@ -38,6 +38,10 @@ public class CollectorsAction {
         testGroupingByFunction();
         testGroupingByFunctionAndCollector();
         testGroupingByFunctionAndSupplierAndCollector();
+
+        testSummarizingInt();
+        testSummarizingDouble();
+        testSummarizingLong();
     }
 
     private static void testAveragingDouble() {
@@ -131,9 +135,50 @@ public class CollectorsAction {
          *   grouping elements according to a classification function, and then performing a reduction operation
          *   on the values associated with a given key using the specified downstream Collector.
          */
-        TreeMap<Dish.Type, Long> map = menu.stream()
+        Map<Dish.Type, Long> map = menu.stream()
                 .collect(Collectors.groupingBy(Dish::getType, TreeMap::new, Collectors.counting()));
 
         Optional.ofNullable(map).ifPresent(System.out::println);
+        // 变成了TreeMap
+        Optional.ofNullable(map.getClass()).ifPresent(System.out::println);
+    }
+
+    private static void testSummarizingInt() {
+        System.out.print("testSummarizingInt ---> ");
+        /**
+         * summarizingInt(ToIntFunction<? super T> mapper):
+         *   Returns a Collector which applies an int-producing mapping function to each input element,
+         *   and returns summary statistics for the resulting values.
+         *
+         *  IntSummaryStatistics: 表示一个统计, 包含总数、总和、最小值、平均值、最大值
+         */
+        IntSummaryStatistics result = menu.stream().collect(Collectors.summarizingInt(Dish::getCalories));
+        Optional.of(result).ifPresent(System.out::println);
+    }
+
+    private static void testSummarizingDouble() {
+        System.out.print("testSummarizingDouble ---> ");
+        /**
+         * summarizingDouble(ToDoubleFunction<? super T> mapper):
+         *   Returns a Collector which applies an double-producing mapping function to each input element,
+         *   and returns summary statistics for the resulting values.
+         *
+         *  DoubleSummaryStatistics: 表示一个统计, 包含总数、总和、最小值、平均值、最大值
+         */
+        DoubleSummaryStatistics result = menu.stream().collect(Collectors.summarizingDouble(Dish::getCalories));
+        Optional.of(result).ifPresent(System.out::println);
+    }
+
+    private static void testSummarizingLong() {
+        System.out.print("testSummarizingLong ---> ");
+        /**
+         * summarizingLong(ToLongFunction<? super T> mapper)
+         *   Returns a Collector which applies an long-producing mapping function to each input element,
+         *   and returns summary statistics for the resulting values.
+         *
+         *  LongSummaryStatistics: 表示一个统计, 包含总数、总和、最小值、平均值、最大值
+         */
+        LongSummaryStatistics result = menu.stream().collect(Collectors.summarizingLong(Dish::getCalories));
+        Optional.of(result).ifPresent(System.out::println);
     }
 }
