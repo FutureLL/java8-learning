@@ -20,6 +20,7 @@ import java.util.stream.StreamSupport;
  *
  * Spliterator是java1.8引入的一种并行遍历的机制    ===>  并行遍历
  * Iterator提供也提供了对集合数据进行遍历的能力    ===>  顺序遍历
+ * </p>
  */
 public class SpliteratorInAction {
 
