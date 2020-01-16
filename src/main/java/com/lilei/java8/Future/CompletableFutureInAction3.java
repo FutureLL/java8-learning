@@ -47,6 +47,7 @@ public class CompletableFutureInAction3 {
          *        .whenComplete((v, t) -> Optional.ofNullable(v).ifPresent(System.out::println));
          */
 
+        /**
         // 如果有多个
         List<Integer> productionIDs = Arrays.asList(1, 2, 3, 4, 5);
         // 得到相应个数的随机值
@@ -60,6 +61,14 @@ public class CompletableFutureInAction3 {
         List<Double> result = multiplyFutures.map(CompletableFuture::join).collect(toList());
         // 输出
         Optional.of(result).ifPresent(System.out::println);
+         */
+
+        // improve
+        Optional.of(Arrays.asList(1, 2, 3, 4, 5).stream()
+                .map(i -> CompletableFuture.supplyAsync(CompletableFutureInAction1::getDoubleValue, executor))
+                .map(future -> future.thenApply(CompletableFutureInAction3::multiply))
+                .map(CompletableFuture::join).collect(toList()))
+                .ifPresent(System.out::println);
 
         executor.shutdown();
     }
