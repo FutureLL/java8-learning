@@ -94,6 +94,4 @@ public class CompletableFutureInAction4 {
 
         TimeUnit.MILLISECONDS.sleep(1000L);
     }
-
-
 }
