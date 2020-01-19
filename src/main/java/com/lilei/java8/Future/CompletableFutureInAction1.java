@@ -53,12 +53,26 @@ public class CompletableFutureInAction1 {
     /* 包可见的状态 */
     static double getDoubleValue() {
         try {
-            TimeUnit.MILLISECONDS.sleep(RANDOM.nextInt(10000));
+            TimeUnit.MILLISECONDS.sleep(RANDOM.nextInt(1000));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         double value = RANDOM.nextDouble();
+        System.out.println(value);
+        // 返回一个随机的double类型
+        return value;
+    }
+
+    /* 包可见的状态 */
+    static int getIntegerValue() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(RANDOM.nextInt(1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int value = RANDOM.nextInt(10);
         System.out.println(value);
         // 返回一个随机的double类型
         return value;

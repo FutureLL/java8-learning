@@ -1,13 +1,11 @@
 package com.lilei.java8.Future;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -64,10 +62,12 @@ public class CompletableFutureInAction3 {
          */
 
         // improve
-        Optional.of(Arrays.asList(1, 2, 3, 4, 5).stream()
+        Optional.of(Arrays.asList(1, 2, 3, 4, 5)
+                .stream()
                 .map(i -> CompletableFuture.supplyAsync(CompletableFutureInAction1::getDoubleValue, executor))
                 .map(future -> future.thenApply(CompletableFutureInAction3::multiply))
-                .map(CompletableFuture::join).collect(toList()))
+                .map(CompletableFuture::join)
+                .collect(toList()))
                 .ifPresent(System.out::println);
 
         executor.shutdown();
